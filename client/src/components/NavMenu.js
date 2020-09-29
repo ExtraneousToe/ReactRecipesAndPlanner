@@ -36,7 +36,7 @@ export class NavMenu extends Component {
                 >
                     <Container>
                         <NavbarBrand tag={Link} to="/">
-                            ReactWebApplication
+                            Recipe &amp; Meal Planner
                         </NavbarBrand>
                         <NavbarToggler
                             onClick={this.toggleNavbar}
@@ -55,6 +55,15 @@ export class NavMenu extends Component {
                                         to="/"
                                     >
                                         Home
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        tag={Link}
+                                        className="text-dark"
+                                        to="/recipes"
+                                    >
+                                        Recipes
                                     </NavLink>
                                 </NavItem>
                             </ul>

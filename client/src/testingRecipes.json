@@ -1,0 +1,141 @@
+[
+    {
+        "title": "French Onion Soup",
+        "tags": ["onion", "soup"],
+        "timing": {
+            "prep": 20,
+            "cook": 90
+        },
+        "rating": 5,
+        "serves": {
+            "min": 4,
+            "max": 6
+        },
+        "ingredients": [
+            {
+                "name": "unsalted butter",
+                "amount": {
+                    "type": "weight",
+                    "unit": "grams",
+                    "value": 100
+                }
+            },
+            {
+                "name": "brown/yellow onions",
+                "amount": {
+                    "type": "weight",
+                    "unit": "kg",
+                    "value": 1.25
+                }
+            },
+            {
+                "name": "dry white wine",
+                "amount": {
+                    "type": "volume",
+                    "unit": "cup",
+                    "value": 0.75
+                }
+            },
+            {
+                "name": "flour",
+                "amount": {
+                    "type": "volume",
+                    "unit": "tbsp",
+                    "value": 2
+                }
+            },
+            {
+                "name": "beef broth/stock or chicken",
+                "amount": {
+                    "type": "value",
+                    "unit": "L",
+                    "value": 1.5
+                },
+                "notes": "low sodium/salt reduced"
+            },
+            {
+                "name": "bay leaves",
+                "amount": {
+                    "type": "items",
+                    "unit": "",
+                    "value": 3
+                },
+                "notes": "dried"
+            },
+            {
+                "name": "fresh thyme",
+                "amount": {
+                    "type": "items",
+                    "unit": "sprigs",
+                    "value": 3
+                }
+            },
+            {
+                "name": "salt and pepper"
+            }
+        ],
+        "steps": [
+            {
+                "heading": "Caramelise Onions",
+                "steps": [
+                    "Melt butter in a heavy based casserole pot over medium heat. When it starts to foam, add onions and stir to coat in butter.",
+                    "30 min on medium low: Turn heat down to medium low. Cook for 30 minutes stirring every few minutes, until the onions have softened and are semi transparent.",
+                    "Salt, 20 min on medium high: Turn heat up to medium or medium high. Add salt, and cook for a further 20 - 30 minutes, stirring more regularly, until onions are deep golden and sweet."
+                ]
+            },
+            {
+                "heading": "Make soup",
+                "steps": [
+                    "Deglaze: Add wine, then simmer rapidly for 2 minutes until mostly evaporated, stirring to scrape the bottom of the pot.",
+                    "Flour: Sprinkle flour over the onion and cook for 1 minute.",
+                    "Add broth & herbs: Add broth, thyme and bay leaves. ",
+                    "Simmer: Cover, lower heat so it's simmering gently then simmer for 30 minutes. ",
+                    "Serve: Season to taste with salt and pepper. Ladle into bowls. Top with 1 or 2 slices of cheesy toast."
+                ]
+            },
+            {
+                "heading": "Cheese Toast",
+                "steps": [
+                    "Preheat grill / broiler to high.Toast each side of bread until light golden.",
+                    "Top bread with cheese, then grill until melted and some brown spots appear."
+                ]
+            }
+        ],
+        "notes": [
+            {
+                "heading": "Onions",
+                "content": [
+                    "halve them then cut from the top to bottom (see video). It makes them hold their shape better when cooking and you don't get stringy bits. But it's not a big deal! Half the onions in the video were accidentally cut the other way."
+                ]
+            },
+            {
+                "heading": "Wine",
+                "content": [
+                    "is used to deglaze the pot here, to get the brown stuff off the base of the pot and also the wine adds flavour into the soup broth. It's fine to skip it - the beef broth ends up having the same deglazing effect.",
+                    "Any non-sweet, non-woody wine is fine. Sauvignon Blanc, Pinot Gris are what I use."
+                ]
+            },
+            {
+                "heading": "Broth/stock",
+                "content": [
+                    "French Onion Soup can be made with chicken or beef broth. It is more commonly made with beef stock, from what I have observed.",
+                    "Use a good quality beef stock. I personally do not recommend mainstream brands from major supermarkets in Australia. I use Maggie Beer and Moredough from Harris Farms, , or private labels from butchers.",
+                    "It is better to use chicken or vegetable broth rather than sub-standard beef broth.",
+                    "Best to use low salt and add salt if required."
+                ]
+            },
+            {
+                "heading": "Bread",
+                "content": [
+                    "The idea with the recipe is that you can use a spoon to cut through the bread into the soup to eat it (see video). So it's best not to use chewy artisan breads like sourdough. The softer the crumb, the better. Even a thick standard sandwich bread would work!"
+                ]
+            },
+            {
+                "heading": "SLOW COOKER CARAMELISED ONIONS",
+                "content": [
+                    "(see recipe video above) - Read in post for background. Directions: Place onions in slow cooker, toss with 2 tbsp (30g) melted butter. Slow cook on LOW for 10 hours. Onion will be browned but won't have a proper caramelised flavour. Add 2 tbsp (30g) butter into large pot over medium high heat. Tip in all the onions and SOME (not all) of the juices from slow cooker. Cook 10 to 15 minutes until deeply caramelised. Proceed with recipe."
+                ]
+            }
+        ]
+    }
+]
