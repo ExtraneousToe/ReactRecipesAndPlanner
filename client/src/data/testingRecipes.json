@@ -47,7 +47,7 @@
             {
                 "name": "beef broth/stock or chicken",
                 "amount": {
-                    "type": "value",
+                    "type": "volume",
                     "unit": "L",
                     "value": 1.5
                 },

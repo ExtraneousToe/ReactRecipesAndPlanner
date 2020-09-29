@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Recipe } from "../dataTypes/Recipe";
 
 export class RecipeCreator extends Component {
     constructor(props) {
@@ -15,9 +16,7 @@ export class RecipeCreator extends Component {
     }
 
     handleSubmit(event) {
-        let newRecipe = {
-            title: this.state.title,
-        };
+        let newRecipe = new Recipe(this.state.title);
 
         this.props.onRecipeCreated(newRecipe);
 

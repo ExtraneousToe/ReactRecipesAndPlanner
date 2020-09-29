@@ -1,9 +1,16 @@
 import React from "react";
 
 export function RecipeListItem(props) {
+    let item = props.item;
+
     return (
-        <div onClick={(e) => props.onRemoveRecipe(props.index)}>
-            {props.item.title}
+        <div>
+            <button onClick={(e) => props.onRemoveRecipe(props.index)}>
+                -
+            </button>
+            <span onClick={(e) => props.onViewRecipe(item)}>
+                {item.title} - {item.rating}
+            </span>
         </div>
     );
 }

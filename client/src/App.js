@@ -7,7 +7,9 @@ import { RecipeCreator } from "./components/Recipes/RecipeCreator";
 // import ApiClient from "./ApiAccess";
 import "./custom.css";
 
-//const recipesJson = JSON.parse(fs.readFileSync("./testingRecipes.json"));
+import { Recipe } from "./components/dataTypes/Recipe";
+
+import testingRecipes from "./data/testingRecipes.json";
 
 export default class App extends Component {
     static displayName = App.name;
@@ -24,9 +26,30 @@ export default class App extends Component {
 
     componentDidMount() {
         let storedRecipes = localStorage.getItem("recipes");
-        if (storedRecipes === null) {
+        console.log(
+            `storedRecipes -> ${typeof storedRecipes} -> ${storedRecipes}`
+        );
+
+        if (storedRecipes instanceof String) {
+            storedRecipes = JSON.parse(storedRecipes);
+
+            console.log(
+                `storedRecipes -> ${typeof storedRecipes} -> ${storedRecipes}`
+            );
+        }
+
+        if (storedRecipes == null || !(storedRecipes instanceof Array)) {
             storedRecipes = [];
         }
+
+        if (storedRecipes.length === 0) {
+            testingRecipes.map((item, index) => {
+                storedRecipes.push(Recipe.fromJsonObject(item));
+
+                return null;
+            });
+        }
+
         this.setState({
             recipes: storedRecipes,
         });
@@ -36,7 +59,7 @@ export default class App extends Component {
         let copiedList = this.state.recipes.slice();
         copiedList.push(recipe);
 
-        localStorage.setItem("recipes", copiedList);
+        localStorage.setItem("recipes", JSON.stringify(copiedList));
 
         this.setState({
             recipes: copiedList,
