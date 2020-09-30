@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, NavItem, NavLink } from "reactstrap";
 import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
 import { RecipeList } from "./Recipes/RecipeList";

@@ -67,9 +67,9 @@ export class IngredientLine {
         return new IngredientLine(jsonObject.name, jsonObject.amount);
     }
 
-    constructor(name, amount) {
+    constructor(name, notes) {
         this.name = name;
-        this.amount = amount;
+        this.notes = notes;
     }
 }
 
@@ -79,9 +79,8 @@ export class StepGroup {
     }
 
     constructor(heading, steps) {
-        this.heading = heading;
-        // copy in the lines array
-        this.steps = steps.slice();
+        this.heading = heading || "";
+        this.steps = (steps && steps.slice()) || [];
     }
 }
 
@@ -89,8 +88,9 @@ export class NoteGroup {
     static fromJsonObject(jsonObject) {
         return new IngredientLine(jsonObject.heading, jsonObject.heading);
     }
+
     constructor(heading, content) {
-        this.heading = heading;
-        this.content = content.slice();
+        this.heading = heading || "";
+        this.content = (content && content.slice()) || [];
     }
 }

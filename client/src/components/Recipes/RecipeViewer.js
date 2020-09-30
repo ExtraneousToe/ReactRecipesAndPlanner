@@ -3,7 +3,6 @@ import { Redirect, useRouteMatch } from "react-router-dom";
 import { IngredientLine } from "./IngredientLine";
 import { NotesGroup } from "./NotesGroup";
 import { StepsGroup } from "./StepsGroup";
-import { TagLine } from "./TagLine";
 
 export function RecipeViewer(props) {
     let match = useRouteMatch();
@@ -13,7 +12,7 @@ export function RecipeViewer(props) {
     let soughtName = match.params.name;
     soughtName = soughtName.replace(/\s+/g, "");
 
-    if (soughtName.length == 0) {
+    if (soughtName.length === 0) {
         failAndRedirect = true;
         return (
             <span>
@@ -22,7 +21,7 @@ export function RecipeViewer(props) {
         );
     }
 
-    if (props.list.length == 0) {
+    if (props.list.length === 0) {
         failAndRedirect = true;
         return (
             <span>
@@ -34,12 +33,12 @@ export function RecipeViewer(props) {
     items = props.list.filter((item, index) => {
         let squashedName = item.title.replace(/\s+/g, "");
         searching.push(squashedName);
-        return squashedName == soughtName;
+        return squashedName === soughtName;
     });
 
     let recipeItem = items[0];
 
-    if (recipeItem == null) {
+    if (recipeItem === null) {
         failAndRedirect = true;
         return (
             <span>

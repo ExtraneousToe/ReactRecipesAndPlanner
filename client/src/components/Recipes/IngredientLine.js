@@ -4,23 +4,9 @@ export function IngredientLine(props) {
     let ingredient = props.item;
 
     let line = ingredient.name;
-    let amount = ingredient.amount;
 
-    if (amount != null) {
-        switch (amount.type) {
-            case "weight":
-                line = `${amount.value} ${amount.unit} ${line}`;
-                break;
-            case "volume":
-                line = `${amount.value} ${amount.unit} ${line}`;
-                break;
-            case "items":
-                line = `${amount.value} ${line}`;
-                break;
-            default:
-                line = `Unknown -> ${JSON.stringify(amount)}`;
-        }
+    if (ingredient.notes !== undefined && ingredient.notes.length > 0) {
+        line = `${line} (${ingredient.notes})`;
     }
-
     return <div>{line}</div>;
 }

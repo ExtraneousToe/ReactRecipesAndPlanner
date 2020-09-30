@@ -13,62 +13,27 @@
         },
         "ingredients": [
             {
-                "name": "unsalted butter",
-                "amount": {
-                    "type": "weight",
-                    "unit": "grams",
-                    "value": 100
-                }
+                "name": "100g unsalted butter"
             },
             {
-                "name": "brown/yellow onions",
-                "amount": {
-                    "type": "weight",
-                    "unit": "kg",
-                    "value": 1.25
-                }
+                "name": "1.25 kg brown/yellow onions"
             },
             {
-                "name": "dry white wine",
-                "amount": {
-                    "type": "volume",
-                    "unit": "cup",
-                    "value": 0.75
-                }
+                "name": "3/4 cup dry white wine"
             },
             {
-                "name": "flour",
-                "amount": {
-                    "type": "volume",
-                    "unit": "tbsp",
-                    "value": 2
-                }
+                "name": "2 tbsp flour"
             },
             {
-                "name": "beef broth/stock or chicken",
-                "amount": {
-                    "type": "volume",
-                    "unit": "L",
-                    "value": 1.5
-                },
+                "name": "1.5L beef broth/stock or chicken",
                 "notes": "low sodium/salt reduced"
             },
             {
-                "name": "bay leaves",
-                "amount": {
-                    "type": "items",
-                    "unit": "",
-                    "value": 3
-                },
+                "name": "3 bay leaves",
                 "notes": "dried"
             },
             {
-                "name": "fresh thyme",
-                "amount": {
-                    "type": "items",
-                    "unit": "sprigs",
-                    "value": 3
-                }
+                "name": "3 sprigs fresh thyme"
             },
             {
                 "name": "salt and pepper"
