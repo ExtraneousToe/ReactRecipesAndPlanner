@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Route } from "react-router";
+import { Route, Switch } from "react-router";
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Recipes } from "./components/Recipes";
-import { RecipeCreator } from "./components/Recipes/RecipeCreator";
+import RecipeCreator from "./components/Recipes/RecipeCreator";
 // import ApiClient from "./ApiAccess";
 import "./custom.css";
 
@@ -25,18 +25,10 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        // stored items come out as a json string
         let storedRecipes = localStorage.getItem("recipes");
-        console.log(
-            `storedRecipes -> ${typeof storedRecipes} -> ${storedRecipes}`
-        );
-
-        if (storedRecipes instanceof String) {
-            storedRecipes = JSON.parse(storedRecipes);
-
-            console.log(
-                `storedRecipes -> ${typeof storedRecipes} -> ${storedRecipes}`
-            );
-        }
+        // convert the string into an object (in this case an array of objects)
+        storedRecipes = JSON.parse(storedRecipes);
 
         if (storedRecipes == null || !(storedRecipes instanceof Array)) {
             storedRecipes = [];
@@ -44,6 +36,7 @@ export default class App extends Component {
 
         if (storedRecipes.length === 0) {
             testingRecipes.map((item, index) => {
+                console.log(`Storing item ${index}: ${item.title}`);
                 storedRecipes.push(Recipe.fromJsonObject(item));
 
                 return null;
@@ -56,6 +49,8 @@ export default class App extends Component {
     }
 
     handleRecipeCreated(recipe) {
+        console.log(`Created item: ${recipe.title}`);
+
         let copiedList = this.state.recipes.slice();
         copiedList.push(recipe);
 
@@ -71,6 +66,10 @@ export default class App extends Component {
             (item, idx) => removeAtIndex !== idx
         );
 
+        console.log(`Removed item at index: ${removeAtIndex}`);
+
+        localStorage.setItem("recipes", JSON.stringify(filterList));
+
         this.setState({
             recipes: filterList,
         });
@@ -79,16 +78,20 @@ export default class App extends Component {
     render() {
         return (
             <Layout>
-                <Route exact path="/" component={Home} />
-                <Route path="/recipes">
-                    <Recipes
-                        recipeList={this.state.recipes}
-                        onRemoveRecipe={this.handleRemoveRecipe}
+                <Switch>
+                    <Route exact path="/" component={Home} />
+                    <Route
+                        path="/recipes"
+                        render={(props) => (
+                            <Recipes
+                                {...props}
+                                recipeList={this.state.recipes}
+                                onRemoveRecipe={this.handleRemoveRecipe}
+                            />
+                        )}
                     />
-                </Route>
-                <Route path="/recipecreator">
-                    <RecipeCreator onRecipeCreated={this.handleRecipeCreated} />
-                </Route>
+                    <Route path="/planner">Meal Planner - NYI</Route>
+                </Switch>
             </Layout>
         );
     }

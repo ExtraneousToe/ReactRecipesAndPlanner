@@ -17,6 +17,7 @@ export function RecipeList(props) {
             index={index}
             onRemoveRecipe={props.onRemoveRecipe}
             onViewRecipe={props.onViewRecipe}
+            routingUrl={props.routingUrl}
         />
     ));
 

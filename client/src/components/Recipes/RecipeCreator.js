@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Recipe } from "../dataTypes/Recipe";
+import { withRouter } from "react-router";
 
-export class RecipeCreator extends Component {
+class RecipeCreator extends Component {
     constructor(props) {
         super(props);
         this.state = { title: "" };
@@ -10,7 +11,17 @@ export class RecipeCreator extends Component {
 
     handleChanged(event, field) {
         let partialState = {};
-        partialState[field] = event.target.value;
+        let tempValue = event.target.value;
+
+        switch (field) {
+            case "title":
+                break;
+            case "rating":
+                tempValue = Math.max(0, Math.min(5, tempValue));
+                break;
+        }
+
+        partialState[field] = tempValue;
 
         this.setState(partialState);
     }
@@ -22,6 +33,7 @@ export class RecipeCreator extends Component {
 
         this.setState({
             title: "",
+            rating: 0,
         });
 
         event.preventDefault();
@@ -30,18 +42,36 @@ export class RecipeCreator extends Component {
     render() {
         return (
             <>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Title:
+                <button onClick={() => this.props.history.goBack()}>
+                    Back
+                </button>
+                <form className="py-3" onSubmit={this.handleSubmit}>
+                    <div>
+                        <label htmlFor="title">Title:</label>
                         <input
+                            id="title"
                             type="text"
                             value={this.state.title}
                             onChange={(e) => this.handleChanged(e, "title")}
                         />
-                    </label>
+                    </div>
+                    <div>
+                        <label>
+                            Rating:
+                            <input
+                                type="number"
+                                value={this.state.rating}
+                                onChange={(e) =>
+                                    this.handleChanged(e, "rating")
+                                }
+                            />
+                        </label>
+                    </div>
                     <input type="submit" value="submit" />
                 </form>
             </>
         );
     }
 }
+
+export default withRouter(RecipeCreator);

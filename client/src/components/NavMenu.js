@@ -7,7 +7,12 @@ import {
     NavbarToggler,
     NavItem,
     NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
 } from "reactstrap";
+import { SplitButton, ButtonGroup, Button, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
 
@@ -57,13 +62,40 @@ export class NavMenu extends Component {
                                         Home
                                     </NavLink>
                                 </NavItem>
+                                <Dropdown as={ButtonGroup} nav inNavbar>
+                                    <SplitButton
+                                        title="Recipes"
+                                        drop="down"
+                                        variant="secondary"
+                                        href="/recipes/"
+                                    >
+                                        <Dropdown.Item>
+                                            <NavLink
+                                                tag={Link}
+                                                className="text-dark"
+                                                to="/recipes/list"
+                                            >
+                                                List
+                                            </NavLink>
+                                        </Dropdown.Item>
+                                        <Dropdown.Item>
+                                            <NavLink
+                                                tag={Link}
+                                                className="text-dark"
+                                                to="/recipes/creator"
+                                            >
+                                                Creator
+                                            </NavLink>
+                                        </Dropdown.Item>
+                                    </SplitButton>
+                                </Dropdown>
                                 <NavItem>
                                     <NavLink
                                         tag={Link}
                                         className="text-dark"
-                                        to="/recipes"
+                                        to="/planner"
                                     >
-                                        Recipes
+                                        Meal Planner
                                     </NavLink>
                                 </NavItem>
                             </ul>

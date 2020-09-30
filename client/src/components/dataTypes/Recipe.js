@@ -1,5 +1,3 @@
-import { json } from "express";
-
 export class Recipe {
     static fromJsonObject(jsonObject) {
         return new Recipe(
