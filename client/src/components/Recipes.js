@@ -1,105 +1,80 @@
 import React, { Component } from "react";
 import { Navbar, NavItem, NavLink } from "reactstrap";
-import { Route, Switch, Link } from "react-router-dom";
+import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
 import { RecipeList } from "./Recipes/RecipeList";
 import { RecipeViewer } from "./Recipes/RecipeViewer";
 import RecipeCreator from "./Recipes/RecipeCreator";
 
-export class Recipes extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { viewedItem: null };
-        this.selectViewItem = this.selectViewItem.bind(this);
-    }
+export function Recipes(props) {
+    let match = useRouteMatch();
 
-    selectViewItem(item) {
-        this.setState({ viewedItem: item });
-    }
-
-    render() {
-        let match = this.props.match;
-
-        return (
-            <div>
-                <Navbar
-                    className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3"
-                    light
-                >
-                    <ul className="navbar-nav flex-grow">
-                        <NavItem>
-                            <NavLink
-                                tag={Link}
-                                className="text-dark"
-                                to="/recipes/list"
-                            >
-                                List
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                tag={Link}
-                                className="text-dark"
-                                to="/recipes/creator"
-                            >
-                                Creator
-                            </NavLink>
-                        </NavItem>
-                    </ul>
-                </Navbar>
-
-                <Switch>
-                    <Route path={`${match.url}/list`}>
-                        <RecipeList
-                            list={this.props.recipeList}
-                            onRemoveRecipe={this.props.onRemoveRecipe}
-                            onViewRecipe={this.selectViewItem}
-                            routingUrl={match.url}
-                        />
-                    </Route>
-                    <Route exact path={`${match.url}/creator`}>
-                        <RecipeCreator />
-                    </Route>
-                    <Route
-                        path={`${match.url}/item/:name`}
-                        render={(props) => {
-                            // return <span>{JSON.stringify(props)}</span>;
-
-                            return <span>{props.match.params.name}</span>;
-                        }}
-                    />
-                </Switch>
-
-                {/*
-                    <ul className="navbar-nav flex-grow">
+    return (
+        <div>
+            <Navbar
+                className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3"
+                light
+            >
+                <ul className="navbar-nav flex-grow">
                     <NavItem>
                         <NavLink
                             tag={Link}
                             className="text-dark"
-                            to="/recipecreator"
+                            to="/recipes/list"
                         >
-                            Create a Recipe
+                            List
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink
+                            tag={Link}
+                            className="text-dark"
+                            to="/recipes/creator"
+                        >
+                            Creator
                         </NavLink>
                     </NavItem>
                 </ul>
-                {this.state.viewedItem && (
-                    <RecipeViewer
-                        item={this.state.viewedItem}
-                        onBack={() => {
-                            this.selectViewItem(null);
-                        }}
-                    />
-                )}
-                {!this.state.viewedItem && (
+            </Navbar>
+
+            <Switch>
+                <Route path={`${match.url}/list`}>
                     <RecipeList
-                        list={this.props.recipeList}
-                        onRemoveRecipe={this.props.onRemoveRecipe}
-                        onViewRecipe={this.selectViewItem}
+                        list={props.recipeList}
+                        onRemoveRecipe={props.onRemoveRecipe}
+                        routingUrl={match.url}
                     />
-                )}
-                */}
-            </div>
-        );
-    }
+                </Route>
+                <Route exact path={`${match.url}/creator`}>
+                    <RecipeCreator onRecipeCreated={props.onCreateRecipe} />
+                </Route>
+                <Route
+                    path={`${match.url}/item/:name`}
+                    render={(routeProps) => {
+                        let soughtName = routeProps.match.params.name;
+                        soughtName = soughtName.replace(/\s+/g, "");
+
+                        let searching = [];
+
+                        let item = props.recipeList.filter((item, index) => {
+                            searching.push(item.title);
+                            return (
+                                item.title.replace(/\s+/g, "") === soughtName
+                            );
+                        })[0];
+
+                        // return <span>{JSON.stringify(item)}</span>;
+
+                        return (
+                            <RecipeViewer
+                                list={props.recipeList}
+                                recipeItem={item}
+                            />
+                        );
+                    }}
+                ></Route>
+            </Switch>
+        </div>
+    );
 }
 
 // export default withRouter(Recipes);

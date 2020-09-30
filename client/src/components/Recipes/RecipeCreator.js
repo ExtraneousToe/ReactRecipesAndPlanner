@@ -1,11 +1,27 @@
 import React, { Component } from "react";
-import { Recipe } from "../dataTypes/Recipe";
+import {
+    Recipe,
+    TimingBlock,
+    ServesBlock,
+    IngredientLine,
+    StepGroup,
+    NoteGroup,
+} from "../dataTypes/Recipe";
 import { withRouter } from "react-router";
 
 class RecipeCreator extends Component {
     constructor(props) {
         super(props);
-        this.state = { title: "" };
+        this.state = {
+            title: "",
+            rating: 0,
+            tags: [],
+            timing: new TimingBlock(0, 0),
+            serves: new ServesBlock(0, 0),
+            ingredients: [],
+            steps: [],
+            notes: [],
+        };
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -16,9 +32,13 @@ class RecipeCreator extends Component {
         switch (field) {
             case "title":
                 break;
+            case "tagsString":
+                break;
             case "rating":
                 tempValue = Math.max(0, Math.min(5, tempValue));
                 break;
+            default:
+                return;
         }
 
         partialState[field] = tempValue;
@@ -27,13 +47,20 @@ class RecipeCreator extends Component {
     }
 
     handleSubmit(event) {
-        let newRecipe = new Recipe(this.state.title);
+        let tagsList = this.state.tagsString.replace(/\s+/g, "").split(",");
+
+        let newRecipe = new Recipe(
+            this.state.title,
+            this.state.rating,
+            tagsList
+        );
 
         this.props.onRecipeCreated(newRecipe);
 
         this.setState({
             title: "",
             rating: 0,
+            tagsString: "",
         });
 
         event.preventDefault();
@@ -42,9 +69,6 @@ class RecipeCreator extends Component {
     render() {
         return (
             <>
-                <button onClick={() => this.props.history.goBack()}>
-                    Back
-                </button>
                 <form className="py-3" onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="title">Title:</label>
@@ -53,6 +77,7 @@ class RecipeCreator extends Component {
                             type="text"
                             value={this.state.title}
                             onChange={(e) => this.handleChanged(e, "title")}
+                            required
                         />
                     </div>
                     <div>
@@ -64,10 +89,23 @@ class RecipeCreator extends Component {
                                 onChange={(e) =>
                                     this.handleChanged(e, "rating")
                                 }
+                                required
                             />
                         </label>
                     </div>
-                    <input type="submit" value="submit" />
+                    <div>
+                        <label>
+                            Tags:
+                            <input
+                                type="text"
+                                value={this.state.tagsString}
+                                onChange={(e) =>
+                                    this.handleChanged(e, "tagsString")
+                                }
+                            />
+                        </label>
+                    </div>
+                    <input type="submit" value="Create" />
                 </form>
             </>
         );

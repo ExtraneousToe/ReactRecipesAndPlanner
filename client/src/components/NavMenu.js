@@ -7,12 +7,7 @@ import {
     NavbarToggler,
     NavItem,
     NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
 } from "reactstrap";
-import { SplitButton, ButtonGroup, Button, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./NavMenu.css";
 
@@ -62,33 +57,31 @@ export class NavMenu extends Component {
                                         Home
                                     </NavLink>
                                 </NavItem>
-                                <Dropdown as={ButtonGroup} nav inNavbar>
-                                    <SplitButton
-                                        title="Recipes"
-                                        drop="down"
-                                        variant="secondary"
-                                        href="/recipes/"
+                                <NavItem className="dropdown">
+                                    <NavLink
+                                        tag={Link}
+                                        className="text-dark"
+                                        to="/recipes"
                                     >
-                                        <Dropdown.Item>
-                                            <NavLink
-                                                tag={Link}
-                                                className="text-dark"
-                                                to="/recipes/list"
-                                            >
-                                                List
-                                            </NavLink>
-                                        </Dropdown.Item>
-                                        <Dropdown.Item>
-                                            <NavLink
-                                                tag={Link}
-                                                className="text-dark"
-                                                to="/recipes/creator"
-                                            >
-                                                Creator
-                                            </NavLink>
-                                        </Dropdown.Item>
-                                    </SplitButton>
-                                </Dropdown>
+                                        Recipes
+                                    </NavLink>
+                                    <div className="dropdown-content">
+                                        <NavLink
+                                            tag={Link}
+                                            className="text-dark"
+                                            to="/recipes/list"
+                                        >
+                                            List
+                                        </NavLink>
+                                        <NavLink
+                                            tag={Link}
+                                            className="text-dark"
+                                            to="/recipes/creator"
+                                        >
+                                            Creator
+                                        </NavLink>
+                                    </div>
+                                </NavItem>
                                 <NavItem>
                                     <NavLink
                                         tag={Link}
@@ -96,6 +89,15 @@ export class NavMenu extends Component {
                                         to="/planner"
                                     >
                                         Meal Planner
+                                    </NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink
+                                        tag={Link}
+                                        className="text-dark"
+                                        to="/settings"
+                                    >
+                                        Settings
                                     </NavLink>
                                 </NavItem>
                             </ul>

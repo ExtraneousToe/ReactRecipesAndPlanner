@@ -80,17 +80,15 @@ export default class App extends Component {
             <Layout>
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route
-                        path="/recipes"
-                        render={(props) => (
-                            <Recipes
-                                {...props}
-                                recipeList={this.state.recipes}
-                                onRemoveRecipe={this.handleRemoveRecipe}
-                            />
-                        )}
-                    />
+                    <Route path="/recipes">
+                        <Recipes
+                            recipeList={this.state.recipes}
+                            onRemoveRecipe={this.handleRemoveRecipe}
+                            onCreateRecipe={this.handleRecipeCreated}
+                        />
+                    </Route>
                     <Route path="/planner">Meal Planner - NYI</Route>
+                    <Route path="/settings">Settings - NYI</Route>
                 </Switch>
             </Layout>
         );
