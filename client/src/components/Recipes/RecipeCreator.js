@@ -91,7 +91,7 @@ export default class RecipeCreator extends Component {
         super(props);
         this.state = {
             title: "",
-            rating: 0,
+            rating: 1,
             tagsString: "",
             prepTime: 0,
             cookTime: 0,
@@ -181,7 +181,7 @@ export default class RecipeCreator extends Component {
 
         this.setState({
             title: "",
-            rating: 0,
+            rating: 1,
             tagsString: "",
             prepTime: 0,
             cookTime: 0,
@@ -301,17 +301,18 @@ export default class RecipeCreator extends Component {
                         />
                     </div>
                     <div>
-                        <label>
-                            Rating:
-                            <input
-                                type="number"
-                                value={this.state.rating}
-                                onChange={(e) =>
-                                    this.handleChanged(e, "rating", "number")
-                                }
-                                required
-                            />
-                        </label>
+                        <label>Rating:</label>
+                        <input
+                            type="range"
+                            min="1"
+                            max="5"
+                            value={this.state.rating}
+                            onChange={(e) =>
+                                this.handleChanged(e, "rating", "number")
+                            }
+                            required
+                        />
+                        <span>{this.state.rating}</span>
                     </div>
                     <div>
                         <label>
