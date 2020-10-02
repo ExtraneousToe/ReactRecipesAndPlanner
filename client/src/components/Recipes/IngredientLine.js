@@ -5,8 +5,12 @@ export function IngredientLine(props) {
 
     let line = ingredient.name;
 
-    if (ingredient.notes !== undefined && ingredient.notes.length > 0) {
+    if (
+        ingredient.notes !== undefined &&
+        ingredient.notes !== null &&
+        ingredient.notes.length > 0
+    ) {
         line = `${line} (${ingredient.notes})`;
     }
-    return <div>{line}</div>;
+    return <li>{line}</li>;
 }

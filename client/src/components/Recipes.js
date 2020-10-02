@@ -4,12 +4,15 @@ import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
 import { RecipeList } from "./Recipes/RecipeList";
 import { RecipeViewer } from "./Recipes/RecipeViewer";
 import RecipeCreator from "./Recipes/RecipeCreator";
+import ApiAccess from "../ApiAccess";
 
 export function Recipes(props) {
     let match = useRouteMatch();
 
     return (
         <div>
+            {/* <button onClick={(e) => fetch(e)}>Fetch</button> */}
+
             <Navbar
                 className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3"
                 light

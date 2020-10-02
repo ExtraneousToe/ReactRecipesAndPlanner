@@ -3,12 +3,16 @@ import { Route, Switch } from "react-router";
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Recipes } from "./components/Recipes";
-// import ApiClient from "./ApiAccess";
+import ApiClient from "./ApiAccess";
 import "./custom.css";
 
 import { Recipe } from "./components/dataTypes/Recipe";
 
 import testingRecipes from "./data/testingRecipes.json";
+
+function getAllData(cb) {
+    ApiClient.get("api/recipes", cb);
+}
 
 export default class App extends Component {
     static displayName = App.name;
@@ -24,27 +28,35 @@ export default class App extends Component {
     }
 
     componentDidMount() {
-        // stored items come out as a json string
-        let storedRecipes = localStorage.getItem("recipes");
-        // convert the string into an object (in this case an array of objects)
-        storedRecipes = JSON.parse(storedRecipes);
+        // // stored items come out as a json string
+        // let storedRecipes = localStorage.getItem("recipes");
+        // // convert the string into an object (in this case an array of objects)
+        // storedRecipes = JSON.parse(storedRecipes);
 
-        if (storedRecipes == null || !(storedRecipes instanceof Array)) {
-            storedRecipes = [];
-        }
+        // if (storedRecipes == null || !(storedRecipes instanceof Array)) {
+        //     storedRecipes = [];
+        // }
 
-        if (storedRecipes.length === 0) {
-            testingRecipes.map((item, index) => {
-                console.log(`Storing item ${index}: ${item.title}`);
-                storedRecipes.push(Recipe.fromJsonObject(item));
+        // if (storedRecipes.length === 0) {
+        //     testingRecipes.map((item, index) => {
+        //         console.log(`Storing item ${index}: ${item.title}`);
+        //         storedRecipes.push(Recipe.fromJsonObject(item));
 
-                return null;
+        //         return null;
+        //     });
+        // }
+
+        getAllData((recipes) => {
+            // console.log(`recipes:`);
+            // console.log(recipes);
+            this.setState({
+                recipes: recipes,
             });
-        }
-
-        this.setState({
-            recipes: storedRecipes,
         });
+
+        // this.setState({
+        //     recipes: storedRecipes,
+        // });
     }
 
     handleRecipeCreated(recipe) {
@@ -64,14 +76,32 @@ export default class App extends Component {
         let filterList = this.state.recipes.filter(
             (item, idx) => removeAtIndex !== idx
         );
+        let removingItem = this.state.recipes.filter(
+            (item, idx) => removeAtIndex === idx
+        );
 
         console.log(`Removed item at index: ${removeAtIndex}`);
 
-        localStorage.setItem("recipes", JSON.stringify(filterList));
+        // localStorage.setItem("recipes", JSON.stringify(filterList));
 
-        this.setState({
-            recipes: filterList,
-        });
+        ApiClient.del(
+            "api/recipes",
+            {
+                recipeId: removingItem[0].id,
+            },
+            () => {
+                getAllData((recipes) => {
+                    console.log(recipes);
+                    this.setState({
+                        recipes: recipes,
+                    });
+                });
+            }
+        );
+
+        // this.setState({
+        //     recipes: filterList,
+        // });
     }
 
     render() {

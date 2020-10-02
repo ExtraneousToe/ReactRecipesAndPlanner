@@ -4,7 +4,7 @@ export function StepsGroup(props) {
     let stepGroup = props.item;
 
     let innerSteps = stepGroup.steps.map((item, index) => {
-        return <li key={index}>{item}</li>;
+        return <li key={item.idx}>{item.step}</li>;
     });
 
     return (

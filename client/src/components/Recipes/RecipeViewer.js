@@ -44,7 +44,7 @@ export function RecipeViewer(props) {
             <span>
                 No recipeItem from{" "}
                 {searching.map((item, idx) => {
-                    return <span key={idx}>{item}</span>;
+                    return <span key={item.idx}>{item}</span>;
                 })}
             </span>
         );
@@ -90,7 +90,32 @@ export function RecipeViewer(props) {
                     <b>Tags:</b> {tagsOutput}
                 </div>
                 <div>
-                    <b>Ingredients:</b> {ingredientOutput}
+                    <b>Serves:</b> {recipeItem.serves.min} -{" "}
+                    {recipeItem.serves.max}
+                </div>
+                <div>
+                    <b>Cook Time:</b>
+                    <div className="px-4">
+                        <table class="table-bordered">
+                            <thead>
+                                <th>Prep</th>
+                                <th>Cook</th>
+                                <th>Total</th>
+                            </thead>
+                            <tbody>
+                                <td>{recipeItem.timing.prep}m</td>
+                                <td>{recipeItem.timing.cook}m</td>
+                                <td>
+                                    {recipeItem.timing.prep +
+                                        recipeItem.timing.cook}
+                                    m
+                                </td>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div>
+                    <b>Ingredients:</b> <ul>{ingredientOutput}</ul>
                 </div>
                 <div>
                     <b>Steps:</b>
