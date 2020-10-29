@@ -115,16 +115,6 @@ function connectDatabase(app, databaseConnection) {
     });
 
     // add new data
-    app.put("/api/recipes", async (request, response) => {
-        console.log(`PUT :: ${request.baseUrl}`);
-        console.log(`request.body: ${JSON.stringify(request.body)}`);
-
-        // this will be an INSERT call
-
-        // Object.keys(request).forEach((key) => console.log(key));
-    });
-
-    // update existing data
     app.post("/api/recipes", async (request, response) => {
         console.log(`POST :: ${request.baseUrl}`);
         console.log(`request.body: ${JSON.stringify(request.body)}`);
@@ -132,6 +122,16 @@ function connectDatabase(app, databaseConnection) {
         // console.log(`request: ${JSON.stringify(request)}`);
         // console.log(`request.query: ${JSON.stringify(request.query)}`);
         // console.log(`request.params: ${JSON.stringify(request.params)}`);
+
+        // Object.keys(request).forEach((key) => console.log(key));
+    });
+
+    // update existing data
+    app.put("/api/recipes", async (request, response) => {
+        console.log(`PUT :: ${request.baseUrl}`);
+        console.log(`request.body: ${JSON.stringify(request.body)}`);
+
+        // this will be an INSERT call
 
         // Object.keys(request).forEach((key) => console.log(key));
     });
